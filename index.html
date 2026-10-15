@@ -37,7 +37,7 @@ const seedJobs=[
 {id:"seed6",title:"UX Researcher",company:"Human Loop",location:"Remote",type:"Contract",level:"Senior",skills:["Research","Interviews","Usability","Synthesis"],desc:"Plan user studies, identify needs and translate findings into product recommendations.",salary:"₹1,500–2,500/day"}];
 const get=(k,f)=>{try{return JSON.parse(localStorage.getItem("tf_"+k))??f}catch{return f}};
 const put=(k,v)=>localStorage.setItem("tf_"+k,JSON.stringify(v));
-let jobs=get("jobs",seedJobs), saved=get("saved",[]), apps=get("apps",[]), profile=get("profile",{});
+let jobs=get("jobs",seedJobs), saved=get("saved",[]), apps=get("apps",[]), profile=get("profile",{}); 
 const $=id=>document.getElementById(id); const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 function skills(){return String(profile.skills||"").split(",").map(x=>x.trim().toLowerCase()).filter(Boolean)}
 function score(job){let sk=skills();if(!sk.length)return 0;let terms=[...job.skills,job.title,job.desc].join(" ").toLowerCase();return Math.round(sk.filter(s=>terms.includes(s)).length/sk.length*100)}
